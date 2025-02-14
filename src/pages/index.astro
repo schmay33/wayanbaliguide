@@ -1,5 +1,7 @@
 ---
 import "../styles/styles.css";
+import { Image } from "astro:assets";
+
 const title = "Private Driver & Tour Guide in Bali | Wayan Bali Tour Service";
 const description =
     "Professional private driver and tour guide in Bali. Offering customized private tours, group trips, and reliable airport transfers across Bali. Book your personalized Bali experience today!";
@@ -10,6 +12,13 @@ const navigationLinks = [
     { href: "#testimonials", label: "Testimonials" },
     { href: "#instagram", label: "Instagram" },
 ];
+
+// Import all images
+import ubudImage from "../assets/1.jpg";
+import eastBaliImage from "../assets/2.jpg";
+import northBaliImage from "../assets/3.jpg";
+import southBaliImage from "../assets/4.jpg";
+import southwestImage from "../assets/5.jpg";
 ---
 
 <html lang="en">
@@ -352,11 +361,10 @@ const navigationLinks = [
                         <div class="area-section">
                             <h4>Ubud Experiences</h4>
                             <div class="area-content">
-                                <img
-                                    src="/assets/1.jpg"
+                                <Image
+                                    src={ubudImage}
                                     alt="Scenic Ubud landscape"
                                     class="area-image"
-                                    loading="lazy"
                                 />
                                 <ul class="destination-list">
                                     <li>Traditional Market</li>
@@ -381,11 +389,10 @@ const navigationLinks = [
                         <div class="area-section">
                             <h4>East Bali Adventures</h4>
                             <div class="area-content">
-                                <img
-                                    src="/assets/2.jpg"
+                                <Image
+                                    src={eastBaliImage}
                                     alt="East Bali temple"
                                     class="area-image"
-                                    loading="lazy"
                                 />
                                 <ul class="destination-list">
                                     <li>Snorkeling Spots</li>
@@ -407,11 +414,10 @@ const navigationLinks = [
                         <div class="area-section">
                             <h4>North Bali Discoveries</h4>
                             <div class="area-content">
-                                <img
-                                    src="/assets/3.jpg"
+                                <Image
+                                    src={northBaliImage}
                                     alt="North Bali landscape"
                                     class="area-image"
-                                    loading="lazy"
                                 />
                                 <ul class="destination-list">
                                     <li>Coffee & Tea Plantations</li>
@@ -429,11 +435,10 @@ const navigationLinks = [
                         <div class="area-section">
                             <h4>South Bali Highlights</h4>
                             <div class="area-content">
-                                <img
-                                    src="/assets/4.jpg"
+                                <Image
+                                    src={southBaliImage}
                                     alt="South Bali landscape"
                                     class="area-image"
-                                    loading="lazy"
                                 />
                                 <ul class="destination-list">
                                     <li>Uluwatu Temple & Monkeys</li>
@@ -451,11 +456,10 @@ const navigationLinks = [
                         <div class="area-section">
                             <h4>Soutwest Areas</h4>
                             <div class="area-content">
-                                <img
-                                    src="/assets/5.jpg"
+                                <Image
+                                    src={southwestImage}
                                     alt="Central Bali landscape"
                                     class="area-image"
-                                    loading="lazy"
                                 />
                                 <ul class="destination-list">
                                     <li>Canggu</li>
