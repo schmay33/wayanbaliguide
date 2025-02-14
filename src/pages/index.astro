@@ -1,6 +1,10 @@
 ---
 import "../../public/styles/styles.css";
-const title = "Wayan Bali Tour Service";
+const title = "Private Driver & Tour Guide in Bali | Wayan Bali Tour Service";
+const description =
+    "Professional private driver and tour guide in Bali. Offering customized private tours, group trips, and reliable airport transfers across Bali. Book your personalized Bali experience today!";
+const keywords =
+    "bali private driver, bali tour guide, bali airport transfer, private tours bali, group tours bali, bali day trips, bali car hire with driver";
 const navigationLinks = [
     { href: "#services", label: "Services" },
     { href: "#testimonials", label: "Testimonials" },
@@ -12,10 +16,23 @@ const navigationLinks = [
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+
+        <!-- Open Graph / Social Media -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://wayanbalitourservice.com" />
+        <!-- Add actual image URL -->
         <meta
-            name="description"
-            content="Experience authentic Bali with personalized tours and unforgettable adventures. Book your dream vacation with Wayan Bali Tour Service."
+            property="og:image"
+            content="/path-to-your-social-share-image.jpg"
         />
+
+        <!-- Add canonical URL -->
+        <link rel="canonical" href="https://wayanbalitourservice.com" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -25,6 +42,10 @@ const navigationLinks = [
         <title>{title}</title>
     </head>
     <body>
+        <!-- Add skip links at the very top of the body -->
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+        <a href="#nav-links" class="skip-link">Skip to navigation</a>
+
         <header class="header">
             <nav class="nav">
                 <div class="container nav-container">
@@ -32,10 +53,15 @@ const navigationLinks = [
                         <span class="logo-text">Wayan</span>
                         <span class="logo-accent">Bali Tour Service</span>
                     </a>
-                    <button class="mobile-nav-toggle" aria-label="Toggle menu">
+                    <button
+                        class="mobile-nav-toggle"
+                        aria-label="Toggle menu"
+                        aria-controls="nav-links"
+                        aria-expanded="false"
+                    >
                         <span class="hamburger"></span>
                     </button>
-                    <ul class="nav-links">
+                    <ul class="nav-links" id="nav-links" role="navigation">
                         {
                             navigationLinks.map((link) => (
                                 <li>
@@ -63,15 +89,37 @@ const navigationLinks = [
                                 Message on WhatsApp
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href="mailto:setiawanoceng84@gmail.com"
+                                class="email-button"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                                    ></path>
+                                </svg>
+                                Email Us
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
             <div class="hero">
                 <div class="hero-content">
-                    <h1 class="hero-title">Discover the Magic of Bali</h1>
+                    <h1 class="hero-title">
+                        Professional Private Driver & Tour Guide in Bali
+                    </h1>
                     <p class="hero-subtitle">
-                        Immerse yourself in culture, adventure, and breathtaking
-                        landscapes
+                        Explore Bali with a trusted local guide. Offering
+                        private tours, airport transfers, and customized day
+                        trips across the island
                     </p>
                     <div class="hero-cta">
                         <a href="#services" class="cta-button primary"
@@ -85,35 +133,169 @@ const navigationLinks = [
             </div>
         </header>
 
-        <main>
+        <main id="main-content">
             <section class="services" id="services">
                 <div class="container">
-                    <h2 class="section-title">Our Experiences</h2>
+                    <h2 class="section-title">Our Bali Tour Services</h2>
                     <div class="services-grid">
                         <div class="service-card">
                             <div class="service-icon">🏖️</div>
-                            <h3>Private Tours</h3>
+                            <h3>Private Tours & Day Trips</h3>
                             <p>
-                                Personalized adventures crafted just for you,
-                                ensuring an intimate exploration of Bali's
-                                treasures.
+                                Customized private tours with an experienced
+                                local driver. Visit temples, beaches,
+                                waterfalls, and hidden gems across Bali at your
+                                own pace.
                             </p>
+                            <div class="pricing-info">
+                                <p class="price-label">
+                                    Tour Prices (10-Hour Day)
+                                </p>
+                                <div class="price-table">
+                                    <div class="price-row">
+                                        <span class="location">North Bali</span>
+                                        <div class="prices">
+                                            <span class="price-idr"
+                                                >IDR 1,500,000</span
+                                            >
+                                            <span class="price-usd"
+                                                >~$90 USD</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="location">East Bali</span>
+                                        <div class="prices">
+                                            <span class="price-idr"
+                                                >IDR 1,500,000</span
+                                            >
+                                            <span class="price-divider">|</span>
+                                            <span class="price-usd"
+                                                >~$90 USD</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="location">South Bali</span>
+                                        <div class="prices">
+                                            <span class="price-idr"
+                                                >IDR 1,300,000</span
+                                            >
+                                            <span class="price-divider">|</span>
+                                            <span class="price-usd"
+                                                >~$80 USD</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="location">Ubud Area</span>
+                                        <div class="prices">
+                                            <span class="price-idr"
+                                                >IDR 1,200,000</span
+                                            >
+                                            <span class="price-divider">|</span>
+                                            <span class="price-usd"
+                                                >~$75 USD</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="location"
+                                            >Canggu/Seminyak/Kuta</span
+                                        >
+                                        <div class="prices">
+                                            <span class="price-idr"
+                                                >IDR 1,000,000</span
+                                            >
+                                            <span class="price-divider">|</span>
+                                            <span class="price-usd"
+                                                >~$65 USD</span
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <div class="service-icon">👥</div>
-                            <h3>Group Tours</h3>
-                            <p>
-                                Share the magic with others in our carefully
-                                curated group experiences.
-                            </p>
+                    </div>
+
+                    <div class="tour-areas">
+                        <h3 class="area-title">Popular Tour Areas</h3>
+
+                        <div class="area-section">
+                            <h4>Ubud Experiences</h4>
+                            <ul class="destination-list">
+                                <li>Traditional Market</li>
+                                <li>Ubud Palace</li>
+                                <li>Sacred Temples</li>
+                                <li>Monkey Forest</li>
+                                <li>Campuhan Bridge</li>
+                                <li>Waterfalls</li>
+                                <li>ATV Rides & Water Rafting</li>
+                                <li>Silver Crafting Class</li>
+                                <li>Tegalalang Rice Fields</li>
+                                <li>Coffee & Tea Plantation</li>
+                                <li>Bali Swing & Flower Gardens</li>
+                                <li>Barong & Kecak Dance</li>
+                                <li>Goa Gajah Temple</li>
+                                <li>Balinese Healing Waterfall</li>
+                                <li>Tirta Empul Temple</li>
+                            </ul>
                         </div>
-                        <div class="service-card">
-                            <div class="service-icon">✈️</div>
-                            <h3>Airport Transfers</h3>
-                            <p>
-                                Start and end your journey smoothly with our
-                                reliable transfer service.
-                            </p>
+
+                        <div class="area-section">
+                            <h4>East Bali Adventures</h4>
+                            <ul class="destination-list">
+                                <li>Snorkeling Spots</li>
+                                <li>Lempuyang Temple (Gates of Heaven)</li>
+                                <li>Tirta Gangga Temple</li>
+                                <li>Taman Ujung Water Palace</li>
+                                <li>Besakih Temple (Mother Temple)</li>
+                                <li>Virgin Beach</li>
+                                <li>Chocolate Factory</li>
+                                <li>Amed Area</li>
+                                <li>
+                                    Lahangan Sweet Viewpoint (Mt. Agung & Ocean
+                                    Views)
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="area-section">
+                            <h4>North Bali Discoveries</h4>
+                            <ul class="destination-list">
+                                <li>Coffee & Tea Plantations</li>
+                                <li>Botanical Garden</li>
+                                <li>Jatiluwih Rice Fields</li>
+                                <li>Batukaru Temple</li>
+                                <li>Ulun Danu Temple & Lake</li>
+                                <li>Wanagiri Photo Spots & Swing</li>
+                                <li>Handara Gates</li>
+                                <li>Dolphin Watching & Snorkeling</li>
+                            </ul>
+                        </div>
+
+                        <div class="area-section">
+                            <h4>South Bali Highlights</h4>
+                            <ul class="destination-list">
+                                <li>Uluwatu Temple & Monkeys</li>
+                                <li>Beautiful Beaches</li>
+                                <li>Kecak Fire Dance & Sunset</li>
+                                <li>GWK Cultural Park</li>
+                                <li>Bali Safari Park</li>
+                                <li>Water Sports</li>
+                                <li>Water Blow Beach</li>
+                                <li>Beach Clubs</li>
+                            </ul>
+                        </div>
+
+                        <div class="area-section">
+                            <h4>Central Bali Areas</h4>
+                            <ul class="destination-list">
+                                <li>Canggu</li>
+                                <li>Pererenan</li>
+                                <li>Seminyak</li>
+                                <li>Kuta</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -210,6 +392,12 @@ const navigationLinks = [
                         >
                             WhatsApp: +62 081338523232
                         </a>
+                        <a
+                            href="mailto:setiawanoceng84@gmail.com"
+                            class="footer-email"
+                        >
+                            Email: setiawanoceng84@gmail.com
+                        </a>
                     </div>
                 </div>
                 <div class="footer-bottom">
@@ -227,14 +415,85 @@ const navigationLinks = [
             const navLinks = document.querySelector(
                 ".nav-links",
             ) as HTMLElement;
+            const header = document.querySelector(".header") as HTMLElement;
 
-            mobileNavToggle?.addEventListener("click", () => {
+            // Close menu when clicking outside
+            document.addEventListener("click", (e) => {
+                const target = e.target as HTMLElement;
+                if (
+                    !target.closest(".nav-container") &&
+                    navLinks.style.display === "flex"
+                ) {
+                    navLinks.style.display = "none";
+                    mobileNavToggle?.classList.remove("active");
+                }
+            });
+
+            // Close menu when pressing Escape
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && navLinks.style.display === "flex") {
+                    navLinks.style.display = "none";
+                    mobileNavToggle?.classList.remove("active");
+                }
+            });
+
+            // Toggle menu
+            mobileNavToggle?.addEventListener("click", (e) => {
+                e.stopPropagation();
                 const isVisible = navLinks?.style.display === "flex";
                 if (navLinks) {
                     navLinks.style.display = isVisible ? "none" : "flex";
                 }
                 mobileNavToggle.classList.toggle("active");
+
+                // Announce menu state for screen readers
+                mobileNavToggle.setAttribute(
+                    "aria-expanded",
+                    (!isVisible).toString(),
+                );
             });
+
+            // Prevent body scroll when menu is open
+            const observer = new MutationObserver(() => {
+                document.body.style.overflow =
+                    navLinks.style.display === "flex" ? "hidden" : "";
+            });
+
+            observer.observe(navLinks, { attributes: true });
+        </script>
+
+        <!-- Add structured data for Local Business -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "Wayan Bali Tour Service",
+                "image": "/path-to-your-logo.jpg",
+                "description": "Professional private driver and tour guide services in Bali",
+                "@id": "https://wayanbalitourservice.com",
+                "url": "https://wayanbalitourservice.com",
+                "telephone": "+62081338523232",
+                "priceRange": "$$",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "ID"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -8.4095,
+                    "longitude": 115.1889
+                },
+                "areaServed": {
+                    "@type": "GeoCircle",
+                    "geoMidpoint": {
+                        "@type": "GeoCoordinates",
+                        "latitude": -8.4095,
+                        "longitude": 115.1889
+                    },
+                    "geoRadius": "100000"
+                },
+                "sameAs": ["https://www.instagram.com/wayanbalitourservice"]
+            }
         </script>
     </body>
 </html>
