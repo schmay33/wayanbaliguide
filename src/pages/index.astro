@@ -558,33 +558,32 @@ const navigationLinks = [
             );
 
             if ("scrollRestoration" in history) {
-                // Allow manual scroll restoration handling
                 history.scrollRestoration = "manual";
 
-                // Store scroll position before leaving page
+                // Only restore scroll position if we're coming back to the page
+                const scrollPos = sessionStorage.getItem("scrollPos");
+                if (scrollPos) {
+                    window.scrollTo(0, parseInt(scrollPos));
+                    sessionStorage.removeItem("scrollPos");
+                }
+
+                // Store position only when leaving
                 window.addEventListener("beforeunload", () => {
                     sessionStorage.setItem(
                         "scrollPos",
                         window.scrollY.toString(),
                     );
                 });
+            }
 
-                // Restore scroll position or handle anchor links
-                document.addEventListener("DOMContentLoaded", () => {
-                    // Check for stored scroll position
-                    const scrollPos = sessionStorage.getItem("scrollPos");
-
-                    if (scrollPos) {
-                        window.scrollTo(0, parseInt(scrollPos));
-                        sessionStorage.removeItem("scrollPos");
-                    } else if (window.location.hash) {
-                        // Smooth scroll to anchor links
-                        const element = document.querySelector(
-                            window.location.hash,
-                        );
-                        if (element) {
-                            element.scrollIntoView({ behavior: "smooth" });
-                        }
+            // Handle anchor links
+            if (window.location.hash) {
+                window.addEventListener("load", () => {
+                    const element = document.querySelector(
+                        window.location.hash,
+                    );
+                    if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
                     }
                 });
             }
