@@ -32,6 +32,9 @@ const navigationLinks = [
                         <span class="logo-text">Wayan</span>
                         <span class="logo-accent">Bali Tour Service</span>
                     </a>
+                    <button class="mobile-nav-toggle" aria-label="Toggle menu">
+                        <span class="hamburger"></span>
+                    </button>
                     <ul class="nav-links">
                         {
                             navigationLinks.map((link) => (
@@ -217,5 +220,21 @@ const navigationLinks = [
                 </div>
             </div>
         </footer>
+
+        <script>
+            const mobileNavToggle =
+                document.querySelector(".mobile-nav-toggle");
+            const navLinks = document.querySelector(
+                ".nav-links",
+            ) as HTMLElement;
+
+            mobileNavToggle?.addEventListener("click", () => {
+                const isVisible = navLinks?.style.display === "flex";
+                if (navLinks) {
+                    navLinks.style.display = isVisible ? "none" : "flex";
+                }
+                mobileNavToggle.classList.toggle("active");
+            });
+        </script>
     </body>
 </html>
