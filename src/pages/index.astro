@@ -18,6 +18,7 @@ const navigationLinks = [
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
+        <meta name="robots" content="index, follow" />
 
         <!-- Open Graph / Social Media -->
         <meta property="og:title" content={title} />
@@ -46,6 +47,53 @@ const navigationLinks = [
             rel="stylesheet"
         />
         <title>{title}</title>
+
+        <!-- Add section-specific meta descriptions -->
+        <meta name="description" content={description} />
+        <meta property="og:description" content={description} />
+
+        <!-- Add structured data for page sections -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Bali Tour Services",
+                            "description": "Customized private tours, group trips, and airport transfers across Bali. Professional driver and guide services with flexible itineraries."
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Ubud Experiences",
+                            "description": "Explore Ubud's cultural heritage: traditional markets, temples, Monkey Forest, rice terraces, and authentic Balinese experiences."
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": "East Bali Adventures",
+                            "description": "Discover East Bali's treasures: Gates of Heaven at Lempuyang Temple, snorkeling spots, and majestic Mount Agung views."
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 4,
+                            "name": "North Bali Discoveries",
+                            "description": "Experience North Bali's natural wonders: coffee plantations, rice terraces, temples, and dolphin watching."
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 5,
+                            "name": "South Bali Highlights",
+                            "description": "Explore South Bali's attractions: Uluwatu Temple, pristine beaches, cultural performances, and water sports."
+                        }
+                    ]
+                }
+            }
+        </script>
     </head>
     <body>
         <!-- Add skip links at the very top of the body -->
@@ -140,7 +188,11 @@ const navigationLinks = [
         </header>
 
         <main id="main-content">
-            <section class="services" id="services">
+            <section
+                class="services"
+                id="services"
+                data-description="Professional Bali tour services offering customized private tours, group trips, and reliable airport transfers across the island."
+            >
                 <div class="container">
                     <h2 class="section-title">Our Bali Tour Services</h2>
                     <div class="services-grid">
@@ -220,7 +272,10 @@ const navigationLinks = [
                         </div>
                     </div>
 
-                    <div class="tour-areas">
+                    <div
+                        class="tour-areas"
+                        data-description="Explore Bali's diverse regions with our curated tour experiences, from cultural Ubud to coastal adventures."
+                    >
                         <h3 class="area-title">Popular Tour Areas</h3>
 
                         <div class="area-section">
@@ -303,7 +358,11 @@ const navigationLinks = [
                 </div>
             </section>
 
-            <section class="testimonials" id="testimonials">
+            <section
+                class="testimonials"
+                id="testimonials"
+                data-description="Real guest reviews and experiences with Wayan Bali Tour Service. See what our clients say about their Bali adventures."
+            >
                 <div class="container">
                     <h2 class="section-title">Guest Stories</h2>
                     <div class="testimonials-grid">
@@ -411,17 +470,15 @@ const navigationLinks = [
             </div>
         </footer>
 
-        <script>
+        <script is:inline>
             const mobileNavToggle =
                 document.querySelector(".mobile-nav-toggle");
-            const navLinks = document.querySelector(
-                ".nav-links",
-            ) as HTMLElement;
-            const header = document.querySelector(".header") as HTMLElement;
+            const navLinks = document.querySelector(".nav-links");
+            const header = document.querySelector(".header");
 
             // Close menu when clicking outside
             document.addEventListener("click", (e) => {
-                const target = e.target as HTMLElement;
+                const target = e.target;
                 if (
                     !target.closest(".nav-container") &&
                     navLinks.style.display === "flex"
@@ -462,6 +519,94 @@ const navigationLinks = [
             });
 
             observer.observe(navLinks, { attributes: true });
+
+            const sections = document.querySelectorAll("section");
+            const baseTitle = "Wayan Bali Tour Service";
+
+            // Create an Intersection Observer
+            const observerIntersection = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const section = entry.target;
+                            const sectionId = section.id;
+                            let newTitle = baseTitle;
+
+                            // Update title based on section
+                            switch (sectionId) {
+                                case "services":
+                                    newTitle = `Tours & Prices | ${baseTitle}`;
+                                    break;
+                                case "testimonials":
+                                    newTitle = `Guest Reviews | ${baseTitle}`;
+                                    break;
+                                case "instagram":
+                                    newTitle = `Photos | ${baseTitle}`;
+                                    break;
+                            }
+
+                            document.title = newTitle;
+                        }
+                    });
+                },
+                { threshold: 0.5 },
+            ); // Trigger when section is 50% visible
+
+            // Observe all sections
+            sections.forEach((section) =>
+                observerIntersection.observe(section),
+            );
+
+            if ("scrollRestoration" in history) {
+                // Allow manual scroll restoration handling
+                history.scrollRestoration = "manual";
+
+                // Store scroll position before leaving page
+                window.addEventListener("beforeunload", () => {
+                    sessionStorage.setItem(
+                        "scrollPos",
+                        window.scrollY.toString(),
+                    );
+                });
+
+                // Restore scroll position or handle anchor links
+                document.addEventListener("DOMContentLoaded", () => {
+                    // Check for stored scroll position
+                    const scrollPos = sessionStorage.getItem("scrollPos");
+
+                    if (scrollPos) {
+                        window.scrollTo(0, parseInt(scrollPos));
+                        sessionStorage.removeItem("scrollPos");
+                    } else if (window.location.hash) {
+                        // Smooth scroll to anchor links
+                        const element = document.querySelector(
+                            window.location.hash,
+                        );
+                        if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }
+                });
+            }
+
+            // Handle in-page navigation
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const element = document.querySelector(
+                        anchor.getAttribute("href"),
+                    );
+                    if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                        // Update URL without jumping
+                        history.pushState(
+                            null,
+                            "",
+                            anchor.getAttribute("href"),
+                        );
+                    }
+                });
+            });
         </script>
 
         <!-- Update structured data image -->
@@ -497,5 +642,15 @@ const navigationLinks = [
                 "sameAs": ["https://www.instagram.com/wayanbalitourservice"]
             }
         </script>
+
+        <div class="floating-cta">
+            <a
+                href="https://wa.me/62081338523232?text=I'm interested in booking a tour!"
+                class="floating-button"
+                aria-label="Book a tour on WhatsApp"
+            >
+                Book Now
+            </a>
+        </div>
     </body>
 </html>

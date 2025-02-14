@@ -793,3 +793,45 @@ button:focus-visible {
         }
     }
 }
+
+/* Floating CTA Button */
+.floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+}
+
+.floating-button {
+    background: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.floating-button:hover {
+    transform: translateY(-2px);
+    background: var(--secondary);
+}
+
+/* Hide floating button when footer is visible */
+@media (max-height: 700px) {
+    .floating-cta {
+        display: none;
+    }
+}
+
+/* Improve mobile tap targets */
+@media (max-width: 480px) {
+    .destination-list li {
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+    }
+}
